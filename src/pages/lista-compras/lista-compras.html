@@ -23,8 +23,8 @@
     <button ion-button type="submit" block [disabled]="!f.valid">Inclui na lista</button> 
   </form>
   <ion-list>
-    <ion-item *ngFor="let item of listaItens">
-      <h3>{{ item.nome }} {{item.quantidade}}</h3>
+    <ion-item *ngFor="let item of listaItens; let i=index" (click)="verificaItem(i)">
+      <h3>{{ item.nome }} : {{item.quantidade}}</h3>
     </ion-item>
   </ion-list>
 

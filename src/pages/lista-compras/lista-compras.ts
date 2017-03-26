@@ -30,4 +30,9 @@ export class ListaComprasPage {
     this.listaItens=this.listaComprasService.getItens();
   }
 
+  verificaItem(index: number) {
+    this.listaComprasService.removeItem(index);
+    this.carregaItens();
+  }
+
 }
