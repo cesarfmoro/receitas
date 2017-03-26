@@ -1,12 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import { NgForm } from "@angular/forms";
 
-/*
-  Generated class for the ListaCompras page.
-
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
-*/
 @Component({
   selector: 'page-lista-compras',
   templateUrl: 'lista-compras.html'
@@ -15,8 +10,11 @@ export class ListaComprasPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {}
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad ListaComprasPage');
+ 
+  incluiItem(form: NgForm) {
+    console.log(form);
+
   }
+
 
 }

@@ -9,15 +9,15 @@
 
 
 <ion-content padding>
-  <form>
+  <form #f="ngForm" (ngSubmit)="incluiItem(f)">
     <ion-list>
       <ion-item>
         <ion-label fixed>Nome</ion-label>
-        <ion-input type="text" name="nomeIngrediente" placeholder="cerveja"></ion-input>
+        <ion-input type="text" name="nomeIngrediente" placeholder="cerveja" ngModel></ion-input>
       </ion-item>
       <ion-item>
         <ion-label fixed>Quantidade</ion-label>
-        <ion-input type="number" name="qtdeIngrediente" placeholder="6"></ion-input>
+        <ion-input type="number" name="qtdeIngrediente" placeholder="6" ngModel></ion-input>
       </ion-item>
     </ion-list>
     <button ion-button type="submit" block>Inclui na lista</button> 
