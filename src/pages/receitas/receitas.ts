@@ -11,7 +11,7 @@ export class ReceitasPage {
   constructor(public navCtrl: NavController, public navParams: NavParams) {}
 
   novaReceita() {
-    this.navCtrl.push(EditaReceitaPage, {mode: 'New'});
+    this.navCtrl.push(EditaReceitaPage, {mode: 'Nova'});
   }
 
 }

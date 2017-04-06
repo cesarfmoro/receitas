@@ -1,12 +1,31 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Edita Receita</ion-title>
+    <ion-title>{{ mode }} Receita</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
+  <form>
+    <ion-list>
+        <ion-item>
+            <ion-label floating>Nome</ion-label>
+            <ion-input type="text"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label floating>Descrição</ion-label>
+            <ion-textarea></ion-textarea>
+        </ion-item>
+        <ion-item>
+            <ion-label floating>Dificuldade</ion-label>
+            <ion-select>
+              <ion-option *ngFor="let option of niveisDificuldade"
+              [value]="option">{{option}}</ion-option>
+            </ion-select>
+        </ion-item>
+    </ion-list>
+  </form>
 
 </ion-content>
