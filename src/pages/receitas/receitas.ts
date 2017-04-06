@@ -1,12 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import { EditaReceitaPage } from "../edita-receita/edita-receita";
 
-/*
-  Generated class for the Receitas page.
-
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
-*/
 @Component({
   selector: 'page-receitas',
   templateUrl: 'receitas.html'
@@ -15,8 +10,8 @@ export class ReceitasPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {}
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad ReceitasPage');
+  novaReceita() {
+    this.navCtrl.push(EditaReceitaPage, {mode: 'New'});
   }
 
 }
