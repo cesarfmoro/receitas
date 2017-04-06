@@ -8,24 +8,25 @@
 
 
 <ion-content padding>
-  <form>
+  <form [formGroup]="formReceita" (ngSubmit)="envia()">
     <ion-list>
         <ion-item>
             <ion-label floating>Nome</ion-label>
-            <ion-input type="text"></ion-input>
+            <ion-input type="text" formControlName='nome'></ion-input>
         </ion-item>
         <ion-item>
             <ion-label floating>Descrição</ion-label>
-            <ion-textarea></ion-textarea>
+            <ion-textarea formControlName='descricao'></ion-textarea>
         </ion-item>
         <ion-item>
             <ion-label floating>Dificuldade</ion-label>
-            <ion-select>
+            <ion-select formControlName='dificuldade'>
               <ion-option *ngFor="let option of niveisDificuldade"
               [value]="option">{{option}}</ion-option>
             </ion-select>
         </ion-item>
     </ion-list>
+    <button type="submit" ion-button block>{{ mode }} Receita</button>
   </form>
 
 </ion-content>
