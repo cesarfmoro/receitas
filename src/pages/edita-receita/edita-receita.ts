@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, ActionSheetController, AlertController } from 'ionic-angular';
+import { NavController, NavParams, ActionSheetController, AlertController, ToastController } from 'ionic-angular';
 import { FormGroup, FormControl, Validators, FormArray } from "@angular/forms";
 
 @Component({
@@ -17,7 +17,8 @@ export class EditaReceitaPage {
   constructor(public navCtrl: NavController, 
     public navParams: NavParams, 
     private actionSheetController:ActionSheetController,
-    private alertController:AlertController) {
+    private alertController:AlertController,
+    private toastController:ToastController) {
     this.mode = this.navParams.get('mode');
     this.iniciaForm();
   }
@@ -49,7 +50,19 @@ export class EditaReceitaPage {
           text: 'Remove todos ingredientes',
           role: 'destructive',
           handler:() => {
-
+            const fArray: FormArray = <FormArray>this.formReceita.get('ingredientes');
+            const  len = fArray.length;
+            if (len >0) {
+              for (let i = len - 1; i >= 0; i--) {
+                fArray.removeAt(i);
+              }
+              const toast = this.toastController.create({
+                message: 'Todos ingrediente removidos',
+                duration: 1000,
+                position: 'bottom'
+              });
+              toast.present();
+            }
           }
         },
         {
@@ -79,10 +92,22 @@ export class EditaReceitaPage {
           text: 'Adiciona',
           handler: data => {
             if (data.nome.trim() == '' || data.nome == null) {
+              const toast = this.toastController.create({
+                message: 'Entre o nome de um ingrediente',
+                duration: 1000,
+                position: 'bottom'
+              });
+              toast.present();
               return;
             }
             (<FormArray>this.formReceita.get('ingredientes'))
               .push(new FormControl(data.nome, Validators.required));
+            const toast = this.toastController.create({
+              message: 'Ingrediente adicionado',
+              duration: 1000,
+              position: 'bottom'
+            });
+            toast.present();
           }
         }
       ]
