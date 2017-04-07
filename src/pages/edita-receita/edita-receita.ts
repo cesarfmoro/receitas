@@ -63,7 +63,11 @@ export class EditaReceitaPage {
         return {nome: nome, quantidade: 1};
       });
     }
-    this.receitasService.adicionaReceita(value.nome, value.descricao, value.dificuldade, ingredientes);
+    if (this.mode == 'Altera') {
+      this.receitasService.alteraReceita(this.index, value.nome, value.descricao, value.dificuldade, ingredientes);
+    } else {
+      this.receitasService.adicionaReceita(value.nome, value.descricao, value.dificuldade, ingredientes);
+    }
     this.formReceita.reset();
     this.navCtrl.popToRoot();
   }
