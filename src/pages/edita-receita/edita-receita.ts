@@ -58,7 +58,7 @@ export class EditaReceitaPage {
               }
               const toast = this.toastController.create({
                 message: 'Todos ingrediente removidos',
-                duration: 1000,
+                duration: 2000,
                 position: 'bottom'
               });
               toast.present();
@@ -93,8 +93,8 @@ export class EditaReceitaPage {
           handler: data => {
             if (data.nome.trim() == '' || data.nome == null) {
               const toast = this.toastController.create({
-                message: 'Entre o nome de um ingrediente',
-                duration: 1000,
+                message: 'Entre com um valor válido!',
+                duration: 2000,
                 position: 'bottom'
               });
               toast.present();
@@ -104,7 +104,7 @@ export class EditaReceitaPage {
               .push(new FormControl(data.nome, Validators.required));
             const toast = this.toastController.create({
               message: 'Ingrediente adicionado',
-              duration: 1000,
+              duration: 2000,
               position: 'bottom'
             });
             toast.present();
