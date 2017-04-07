@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams, ActionSheetController, AlertController, ToastController } from 'ionic-angular';
 import { FormGroup, FormControl, Validators, FormArray } from "@angular/forms";
 import { ReceitasService } from "../../services/receitas";
+import { Receita } from "../../models/receita";
 
 @Component({
   selector: 'page-edita-receita',
@@ -11,8 +12,10 @@ import { ReceitasService } from "../../services/receitas";
 export class EditaReceitaPage {
  
   mode = 'Nova';
-  niveisDificuldade = ['Fácil', 'Médio', 'Difícil'];
+  niveisDificuldade = ['Fácil', 'Média', 'Difícil'];
   formReceita: FormGroup;
+  receita: Receita;
+  index: number;
   
 
   constructor(public navCtrl: NavController, 
@@ -22,15 +25,33 @@ export class EditaReceitaPage {
     private toastController:ToastController,
     private receitasService: ReceitasService) {
     this.mode = this.navParams.get('mode');
+    if (this.mode == 'Altera') {
+      this.receita=navParams.get('receita');
+      this.index=navParams.get('index');
+    }
     this.iniciaForm();
   }
 
   private iniciaForm() {
+    let nome=null;
+    let descricao=null;
+    let dificuldade = 'Média';
+    let ingredientes = [];
+
+    if (this.mode == 'Altera') {
+      nome = this.receita.nome;
+      descricao = this.receita.descricao;
+      dificuldade = this.receita.dificuldade;
+      for (let ingrediente of this.receita.ingredientes) {
+        ingredientes.push(new FormControl(ingrediente.nome, Validators.required));
+      }
+    }
+
     this.formReceita=new FormGroup({
-      'nome': new FormControl(null, Validators.required),
-      'descricao': new FormControl(null, Validators.required),
-      'dificuldade': new FormControl('Médio', Validators.required),
-      'ingredientes': new FormArray([])
+      'nome': new FormControl(nome, Validators.required),
+      'descricao': new FormControl(descricao, Validators.required),
+      'dificuldade': new FormControl(dificuldade, Validators.required),
+      'ingredientes': new FormArray(ingredientes)
     });
   }
 

@@ -3,6 +3,7 @@ import { NavController, NavParams } from 'ionic-angular';
 import { EditaReceitaPage } from "../edita-receita/edita-receita";
 import { Receita } from "../../models/receita";
 import { ReceitasService } from "../../services/receitas";
+import { ReceitaPage } from "../receita/receita";
 
 @Component({
   selector: 'page-receitas',
@@ -25,7 +26,7 @@ export class ReceitasPage {
     this.navCtrl.push(EditaReceitaPage, {mode: 'Nova'});
   }
 
-  carregaReceita() {
-
+  carregaReceita(receita: Receita, index: number) {
+    this.navCtrl.push(ReceitaPage, {receita: receita, index: index});
   }
 }

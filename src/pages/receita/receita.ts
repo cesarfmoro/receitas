@@ -1,22 +1,31 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import { Receita } from "../../models/receita";
+import { EditaReceitaPage } from "../edita-receita/edita-receita";
 
-/*
-  Generated class for the Receita page.
-
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
-*/
 @Component({
   selector: 'page-receita',
   templateUrl: 'receita.html'
 })
-export class ReceitaPage {
+export class ReceitaPage implements OnInit {
+    
+  receita: Receita;
+  index: number;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {}
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad ReceitaPage');
+  ngOnInit(): void {
+      this.receita=this.navParams.get('receita');
+      this.index=this.navParams.get('index');
   }
+
+  alteraReceita() {
+    this.navCtrl.push(EditaReceitaPage, {mode: 'Altera', receita: this.receita, index: this.index})
+  }
+
+  removeReceita() {
+
+  }
+
 
 }
