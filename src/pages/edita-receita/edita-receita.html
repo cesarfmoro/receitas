@@ -39,7 +39,7 @@
         <ion-input type="text" [formControlName]="i"></ion-input>
       </ion-item>
     </ion-list>
-    <button type="submit" ion-button block>{{ mode }} Receita</button>
+    <button type="submit" ion-button block [disabled]="!formReceita.valid">{{ mode }} Receita</button>
   </form>
 
 </ion-content>

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, ActionSheetController, AlertController, ToastController } from 'ionic-angular';
 import { FormGroup, FormControl, Validators, FormArray } from "@angular/forms";
+import { ReceitasService } from "../../services/receitas";
 
 @Component({
   selector: 'page-edita-receita',
@@ -18,7 +19,8 @@ export class EditaReceitaPage {
     public navParams: NavParams, 
     private actionSheetController:ActionSheetController,
     private alertController:AlertController,
-    private toastController:ToastController) {
+    private toastController:ToastController,
+    private receitasService: ReceitasService) {
     this.mode = this.navParams.get('mode');
     this.iniciaForm();
   }
@@ -33,7 +35,16 @@ export class EditaReceitaPage {
   }
 
   envia() {
-
+    const value = this.formReceita.value;
+    let ingredientes = [];
+    if (value.ingredientes.length > 0) {
+      ingredientes = value.ingredientes.map(nome => {
+        return {nome: nome, quantidade: 1};
+      });
+    }
+    this.receitasService.adicionaReceita(value.nome, value.descricao, value.dificuldade, ingredientes);
+    this.formReceita.reset();
+    this.navCtrl.popToRoot();
   }
 
   editaIngredientes() {
