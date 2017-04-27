@@ -11,6 +11,8 @@ import { TabsPage } from "../pages/tabs/tabs";
 import { ListaComprasPage } from "../pages/lista-compras/lista-compras";
 import { ListaComprasService } from "../services/lista-compras";
 import { ReceitasService } from "../services/receitas";
+import { SignupPage } from "../pages/signup/signup";
+import { SigninPage } from "../pages/signin/signin";
 
 @NgModule({
   declarations: [
@@ -19,7 +21,9 @@ import { ReceitasService } from "../services/receitas";
     ReceitaPage,
     EditaReceitaPage,
     ListaComprasPage,
-    TabsPage
+    TabsPage,
+    SigninPage,
+    SignupPage
   ],
   imports: [
     IonicModule.forRoot(MyApp)
@@ -31,7 +35,9 @@ import { ReceitasService } from "../services/receitas";
     ReceitaPage,
     EditaReceitaPage,
     ListaComprasPage,
-    TabsPage
+    TabsPage,
+    SigninPage,
+    SignupPage
   ],
   providers: [
     StatusBar,
