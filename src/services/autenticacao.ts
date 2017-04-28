@@ -8,4 +8,14 @@ export class AutenticacaoService {
 
     }
 
+    signin(email: string, senha: string) {
+
+        return firebase.auth().signInWithEmailAndPassword(email, senha);
+
+    }
+
+    logout() {
+        firebase.auth().signOut();
+    }
+
 }

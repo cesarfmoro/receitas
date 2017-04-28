@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, LoadingController, AlertController } from 'ionic-angular';
 import { NgForm } from "@angular/forms";
 import { AutenticacaoService } from "../../services/autenticacao";
 
@@ -9,12 +9,28 @@ import { AutenticacaoService } from "../../services/autenticacao";
 })
 export class SignupPage {
 
-  constructor(private autenticacaoService: AutenticacaoService) {}
+  constructor(private autenticacaoService: AutenticacaoService,
+              private loadingCtrl: LoadingController,
+              private alertCtrl: AlertController) {}
 
   signup(form: NgForm) {
+    const loading = this.loadingCtrl.create({
+      content: 'Fazendo o registro da aplicação'
+    });
+    loading.present();
     this.autenticacaoService.signup(form.value.email, form.value.senha)
-      .then(data => console.log(data))
-      .catch(error => console.log(error));
+      .then(data => {
+        loading.dismiss();
+        })
+      .catch(error => {
+        loading.dismiss();
+        const alert = this.alertCtrl.create({
+          title: 'Falha no registro',
+          message: error.message,
+          buttons: ['Ok']
+        });
+        alert.present();
+      });
   }
 
 }
