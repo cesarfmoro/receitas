@@ -13,6 +13,7 @@ import { ListaComprasService } from "../services/lista-compras";
 import { ReceitasService } from "../services/receitas";
 import { SignupPage } from "../pages/signup/signup";
 import { SigninPage } from "../pages/signin/signin";
+import { AutenticacaoService } from "../services/autenticacao";
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { SigninPage } from "../pages/signin/signin";
     SplashScreen,
     ListaComprasService,
     ReceitasService,
+    AutenticacaoService,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { NgForm } from "@angular/forms";
+import { AutenticacaoService } from "../../services/autenticacao";
 
 @Component({
   selector: 'page-signup',
@@ -8,10 +9,12 @@ import { NgForm } from "@angular/forms";
 })
 export class SignupPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {}
+  constructor(private autenticacaoService: AutenticacaoService) {}
 
   signup(form: NgForm) {
-
+    this.autenticacaoService.signup(form.value.email, form.value.senha)
+      .then(data => console.log(data))
+      .catch(error => console.log(error));
   }
 
 }

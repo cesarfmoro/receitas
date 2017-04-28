@@ -5,7 +5,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { TabsPage } from "../pages/tabs/tabs";
 import { SigninPage } from "../pages/signin/signin";
 import { SignupPage } from "../pages/signup/signup";
-
+import firebase from 'firebase';
 
 @Component({
   templateUrl: 'app.html'
@@ -17,6 +17,11 @@ export class MyApp {
   @ViewChild('nav') nav: NavController;
 
   constructor(platform: Platform, private menuCtrl: MenuController, statusBar: StatusBar, splashScreen: SplashScreen) {
+    firebase.initializeApp({
+      apiKey: "AIzaSyCxhEcAcWft7ZybgGwlzgTyM2foOgYD5Pg",
+      authDomain: "receitas-22363.firebaseapp.com"
+    });
+
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
